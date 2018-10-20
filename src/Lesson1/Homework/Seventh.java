@@ -1,4 +1,4 @@
-package Homework;
+package Lesson1.Homework;
 
 public class Seventh {
     public static void main(String[] args) {
@@ -7,8 +7,6 @@ public class Seventh {
         while (num >= 1) {
             if (x < num % 10) x = num % 10;
             num = num / 10;
-
-
         }
       System.out.println("Наибольшая цифра в числе: " + x);
     }
