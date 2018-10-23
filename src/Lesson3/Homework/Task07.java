@@ -12,15 +12,15 @@ public class Task07 {
         char[] charString = new char[string.length()];
         string.getChars(0, string.length(), charString, 0);
         for (int i = 0; i < charString.length; i++)
-            for (int num = 0; num < 9; num++)
-                if (charString[i] == (char) (num + 49)) count++;
+            for (int num = 0; num < 10; num++)
+                if (charString[i] == (char) (num + 48)) count++;
 
                 char[] charArr = new char[count];
                 count = 0;
 
                 for (int i = 0; i < charString.length; i++)
-                    for (int num = 0; num < 9; num++)
-                        if (charString[i] == (char) (num + 49)){
+                    for (int num = 0; num < 10; num++)
+                        if (charString[i] == (char) (num + 48)){
                             charArr[count] = charString[i];
                             count++;
                         }
