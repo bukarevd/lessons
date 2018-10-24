@@ -1,6 +1,8 @@
 package Lesson3.Homework;
 
 
+import java.util.Arrays;
+
 public class Task01 {
     public static void main(String[] args) {
         int[] intArr = new int[10];
@@ -10,9 +12,9 @@ public class Task01 {
         }
 
        for (int i = 0; i < intArr.length; i++)
-           System.out.print(intArr[i] +" ");
+           System.out.print(intArr[i] + " ");
 
-       System.out.println();
+        System.out.println();
 
         for (int num: intArr){
             System.out.println(num);

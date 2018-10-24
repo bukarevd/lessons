@@ -2,7 +2,6 @@ package Lesson2.Homework;
 
 public class Task06 {
     public static void main(String[] args) {
-//        int sumright =0, sumleft = 0;
         int count = 0;
         int left = 0;
         int right = 0;

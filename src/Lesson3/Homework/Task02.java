@@ -1,9 +1,5 @@
 package Lesson3.Homework;
 
-
-
-import java.util.Arrays;
-
 public class Task02 {
     public static void main(String[] args) {
         int[] intArr = new int[50];

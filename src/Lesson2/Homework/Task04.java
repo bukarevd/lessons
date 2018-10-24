@@ -9,11 +9,11 @@ public class Task04 {
         int count = 0;
 
         for (int i = 2; i < numb; i++){
-             for (int j = i; j < numb; j++) {
+             //for (int j = i; j < numb; j++) {
                  if (numb % i == 0) {
                      count++;
                      break;
-                 }
+               // }
              }
         }
         if (count == 0) System.out.print("Число " + numb + " простое");
