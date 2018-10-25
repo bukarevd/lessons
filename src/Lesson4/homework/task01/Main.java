@@ -1,5 +1,7 @@
 package Lesson4.homework.task01;
 
+import Lesson4.homework.task01.Figures;
+
 public class Main {
     public static void main(String[] args) {
         Figures triangle = new Figures(10, 2, 3, 4, 5, 6);
