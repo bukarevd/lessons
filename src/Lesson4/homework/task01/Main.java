@@ -1,6 +1,5 @@
 package Lesson4.homework.task01;
 
-import Lesson4.homework.task01.Figures;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,5 +14,6 @@ public class Main {
         Figures circle = new Figures(2, 5, 6, 7);
         System.out.println(circle.getCirclePerimetr());
         System.out.println(circle.getCircleArea());
+
     }
 }
