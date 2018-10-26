@@ -31,7 +31,16 @@ public class List {
         } else {
             temp = arrList[index - 1];
             arrList[index] = null;
-            temp.setNextNode(null);
+
+            for (int i = index; i < arrList.length; i++){
+                if (arrList[i] == null) {
+                    continue;
+                }
+                else {
+                    temp.setNextNode(arrList[i]);
+                    break;
+                }
+            }
         }
     }
 
