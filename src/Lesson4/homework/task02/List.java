@@ -13,8 +13,8 @@ public class List {
                 if (i != 0 && i < arrList.length) {
                     node.setNextNode(arrList[i+1]);
                     arrList[i] = node;
-                    temp = arrList[i-1];
-                    temp.setNextNode(arrList[i]);
+                     temp = arrList[i-1];
+                     temp.setNextNode(arrList[i]);
                     break;
                 } else {
                     arrList[i] = node;
