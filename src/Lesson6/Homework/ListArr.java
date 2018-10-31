@@ -6,21 +6,33 @@ import java.util.Scanner;
 public class ListArr implements List, Stack, Queue{
     Scanner in = new Scanner(System.in);
     int arrSize = in.nextInt();
-    Object[] obj = new Object[arrSize];
+    TestObject[] obj = new TestObject[arrSize];
 
 
     @Override
-    public void add(Object obj, int index) {
-        this.obj[index] = obj;
+    public void add(TestObject obj, int index) {
+       if(index == this.obj.length) {
+           this.obj[index] = obj;
+           this.obj[index -1].setNextObj(obj);
+       }else {
+           this.obj[index] = obj;
+           obj.setNextObj(this.obj[index + 1]);
+           this.obj[index -1].setNextObj(obj);
+       }
+
     }
 
     @Override
     public void remove(int index) {
         this.obj[index] = null;
+        for (int i = index; i < this.obj.length - 1; i++){
+            obj[i] = obj[i + 1];
+        }
+        obj[index-1].setNextObj(obj[index]);
     }
 
     @Override
-    public Object get(int index) {
+    public TestObject get(int index) {
         return this.obj[index];
     }
 
@@ -30,7 +42,7 @@ public class ListArr implements List, Stack, Queue{
     }
 
     @Override
-    public void shift(Object obj) {
+    public void shift(TestObject obj) {
 
     }
 
@@ -40,7 +52,7 @@ public class ListArr implements List, Stack, Queue{
     }
 
     @Override
-    public void push(Object obj) {
+    public void push(TestObject obj) {
 
     }
 
