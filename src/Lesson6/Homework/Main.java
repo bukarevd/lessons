@@ -7,6 +7,7 @@ public class Main {
         first.add(new TestObject(), 1);
         first.add(new TestObject(), 2);
         first.add(new TestObject(), 3);
+        first.remove(3);
        first.size();
     }
 }

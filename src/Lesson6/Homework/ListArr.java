@@ -17,6 +17,7 @@ public class ListArr implements List, Stack, Queue{
        }else {
            this.obj[index] = obj;
            obj.setNextObj(this.obj[index + 1]);
+           if(index > 0)
            this.obj[index -1].setNextObj(obj);
        }
 
@@ -28,6 +29,7 @@ public class ListArr implements List, Stack, Queue{
         for (int i = index; i < this.obj.length - 1; i++){
             obj[i] = obj[i + 1];
         }
+        if (index > 0)
         obj[index-1].setNextObj(obj[index]);
     }
 
