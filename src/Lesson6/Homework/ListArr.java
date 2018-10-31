@@ -40,7 +40,11 @@ public class ListArr implements List, Stack, Queue{
 
     @Override
     public void size() {
-        System.out.println(Arrays.toString(obj));
+        int count = 0;
+        for (int i = 0; i < obj.length; i++){
+            if (obj[i] != null) count++;
+        }
+        System.out.println(count);
     }
 
     @Override
