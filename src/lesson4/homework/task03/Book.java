@@ -1,0 +1,22 @@
+package lesson4.homework.task03;
+
+public class Book {
+    String author;
+    String name;
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "author='" + author + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
