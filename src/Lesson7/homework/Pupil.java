@@ -57,7 +57,7 @@ public class Pupil {
 
         @Override
         public String toString() {
-            return nameExam + (getResulExam() ? " " : " не") + " сдал";
+            return nameExam + (getResulExam() ? " сдал" : " не сдал");
         }
     }
 
