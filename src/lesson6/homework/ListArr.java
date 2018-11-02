@@ -9,15 +9,17 @@ public class ListArr implements List, Stack, Queue{
 
 
     @Override
-    public void add(TestObject obj, int index) {
-       if(index == this.obj.length) {
-           this.obj[index] = obj;
-           this.obj[index -1].setNextObj(obj);
+    public void add(Object obj, int index) {
+        TestObject object = (TestObject)obj;
+        if(index == this.obj.length) {
+
+           this.obj[index] = object;
+           this.obj[index -1].setNextObj(object);
        }else {
-           this.obj[index] = obj;
-           obj.setNextObj(this.obj[index + 1]);
+           this.obj[index] = object;
+           object.setNextObj(this.obj[index + 1]);
            if(index > 0)
-           this.obj[index -1].setNextObj(obj);
+           this.obj[index -1].setNextObj(object);
        }
 
     }
