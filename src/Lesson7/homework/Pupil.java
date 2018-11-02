@@ -1,8 +1,5 @@
 package Lesson7.homework;
 
-
-import java.util.Arrays;
-
 public class Pupil {
     private int id;
     private ExamResult examResult[] = new ExamResult[2];
@@ -36,9 +33,9 @@ public class Pupil {
     }
 
     class ExamResult{
-         String nameExam;
-         int score;
-         boolean resultExam;
+         private String nameExam;
+         private int score;
+         private boolean resultExam;
 
         public void setNameExam(String nameExam) {
             this.nameExam = nameExam;
