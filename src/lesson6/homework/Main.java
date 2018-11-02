@@ -9,5 +9,8 @@ public class Main {
         first.add(new TestObject(), 3);
         first.remove(3);
         first.size();
+        System.out.println(first.toString());
+        first.push(new TestObject());
+        System.out.println(first.toString());
     }
 }

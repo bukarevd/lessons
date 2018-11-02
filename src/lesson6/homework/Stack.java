@@ -1,6 +1,6 @@
 package lesson6.homework;
 
 public interface Stack {
-    void push(TestObject obj);
+    void push(Object obj);
     void pop();
 }

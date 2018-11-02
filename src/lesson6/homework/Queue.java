@@ -1,6 +1,6 @@
 package lesson6.homework;
 
 public interface Queue {
-    void shift(TestObject obj);
+    void shift(Object obj);
     void unshift();
 }

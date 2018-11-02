@@ -1,5 +1,6 @@
 package lesson6.homework;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ListArr implements List, Stack, Queue{
@@ -12,7 +13,6 @@ public class ListArr implements List, Stack, Queue{
     public void add(Object obj, int index) {
         TestObject object = (TestObject)obj;
         if(index == this.obj.length) {
-
            this.obj[index] = object;
            this.obj[index -1].setNextObj(object);
        }else {
@@ -36,6 +36,7 @@ public class ListArr implements List, Stack, Queue{
 
     @Override
     public TestObject get(int index) {
+
         return this.obj[index];
     }
 
@@ -49,7 +50,7 @@ public class ListArr implements List, Stack, Queue{
     }
 
     @Override
-    public void shift(TestObject obj) {
+    public void shift(Object obj) {
 
     }
 
@@ -59,12 +60,25 @@ public class ListArr implements List, Stack, Queue{
     }
 
     @Override
-    public void push(TestObject obj) {
-
+    public void push(Object obj) {
+        TestObject tempObjArr[] = new TestObject[this.obj.length + 1];
+        TestObject object = (TestObject) obj;
+        for (int i = 0; i < this.obj.length; i++){
+            tempObjArr[i] = this.obj[i];
+        }
+        this.obj = tempObjArr;
+       // add(obj, this.obj.length);
     }
 
     @Override
     public void pop() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "ListArr{" +
+                "obj=" + Arrays.toString(obj) +
+                '}';
     }
 }
