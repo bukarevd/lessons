@@ -13,7 +13,6 @@ public class Pupil {
 
         if(ex.length != marks.length) {
             System.out.println("Не верные данные");
-            return;
         }else{
             for (int i = 0; i < ex.length; i++){
                 examResult[i] = new ExamResult();
@@ -26,9 +25,8 @@ public class Pupil {
 
     @Override
     public String toString() {
-        String str= "";
-        for (int i = 0; i < examResult.length; i++)
-        str += examResult[i].toString() + "\n";
+        StringBuilder str = new StringBuilder();
+        for (ExamResult anExamResult : examResult) str.append(anExamResult.toString()).append("\n");
         return "Студент:" + id + "\n" + str;
     }
 
