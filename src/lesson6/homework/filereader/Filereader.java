@@ -1,7 +1,7 @@
 package lesson6.homework.filereader;
 
 public class Filereader {
-    public void getType(String fileName) {
+     void getType(String fileName) {
         String separator = "\\.";
         String[] file = fileName.split(separator);
         switch (file[file.length - 1].toLowerCase()) {
@@ -19,13 +19,13 @@ public class Filereader {
         }
     }
 
-    public String readXML(String fileName) {
-        System.out.println("Читаем XML");
+    private String readXML(String fileName) {
+        System.out.println("Читаем " + fileName);
         return "Читаем XML";
     }
 
-    public String readTXT(String fileName) {
-        System.out.println("Читаем TXT");
+    private String readTXT(String fileName) {
+        System.out.println("Читаем " + fileName);
         return "Читаем TXT";
     }
 }
