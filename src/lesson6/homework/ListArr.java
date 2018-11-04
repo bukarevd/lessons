@@ -66,7 +66,6 @@ public class ListArr implements List, Stack, Queue {
     @Override
     public void shift(Object obj) {
         TestObject tempObjArr[] = new TestObject[this.obj.length + 1];
-        int[] index = new int[this.obj.length];
         tempObjArr[0] = (TestObject) obj;
         int i = 1;
         for (TestObject anObj : this.obj) {
