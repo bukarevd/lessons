@@ -1,4 +1,4 @@
-package lesson6.homework;
+package lesson6.homework.List;
 
 public class TestObject {
     private TestObject nextObj = null;

@@ -1,4 +1,4 @@
-package lesson6.homework;
+package lesson6.homework.List;
 
 public interface List {
     void add(Object obj, int index);
