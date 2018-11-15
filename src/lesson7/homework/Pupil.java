@@ -35,16 +35,16 @@ public class Pupil {
          private int score;
          private boolean resultExam;
 
-        public void setNameExam(String nameExam) {
+        void setNameExam(String nameExam) {
             this.nameExam = nameExam;
         }
 
-        public void setScore(int score) {
+        void setScore(int score) {
             this.score = score;
         }
 
 
-        public boolean getResulExam(){
+        boolean getResulExam(){
             if (score < 3) resultExam = false;
             else resultExam = true;
             return resultExam;
