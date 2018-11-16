@@ -1,11 +1,11 @@
 package lesson8;
 
-import org.sqlite.JDBC;
+//import org.sqlite.JDBC;
 
 import java.sql.*;
 
 public class BookHandler {
-    public static void createTable() throws SQLException {
+  /*  public static void createTable() throws SQLException {
 
         String sql = "CREATE TABLE IF NOT EXISTS Book (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
@@ -67,5 +67,5 @@ public class BookHandler {
         }
 
 
-    }
+    }*/
 }
