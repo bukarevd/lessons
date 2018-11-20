@@ -1,12 +1,12 @@
 package lesson8;
 
-//import org.sqlite.JDBC;
+import org.sqlite.JDBC;
 
 import java.sql.*;
 
 public class JDBCExample {
 
-/*
+
     public static void createTable() throws SQLException {
 
         String sql = "CREATE TABLE IF NOT EXISTS Example (" +
@@ -54,5 +54,5 @@ public class JDBCExample {
         JDBCExample.selectData();
     }
 
-*/
+
 }

@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 public class Task01 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String string = in.nextLine();
-        Pattern pattern = Pattern.compile("^-?\\d+$");
-        while (!string.contains("exit")) string = in.nextLine();
-        Matcher matcher = pattern.matcher(string);
-      //  if () new Task01().print(Double.parseDouble(string));
+        String string = in.next();
+//        Pattern pattern = Pattern.compile("^-?\\d+$");
+        while (!string.equals("exit"))
+            if (string.contains(".") && in.hasNextDouble())
+                new Task01().print(Double.parseDouble(string));
 
     }
 
