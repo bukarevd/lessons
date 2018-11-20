@@ -11,9 +11,9 @@ public class AddToGroup {
         Scanner in = new Scanner(System.in);
         String groupname = in.next();
         int userid = in.nextInt();
-        String sql = "INSERT INTO group (groupname, userid) VALUES (?, ?);";
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chatdb?useSSL=false",
-                "chatuser", "cde14af78")) {
+        String sql = "INSERT INTO usergroup (groupname, userid) VALUES (?, ?);";
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chatdb?" +
+                        "useSSL=false", "chatuser", "cde14af78")) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, groupname);
             preparedStatement.setString(2, Integer.toString(userid));

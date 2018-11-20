@@ -4,7 +4,6 @@ public interface SpeakerUnit {
 
     void say(String text);
     void sing(String song);
-    boolean IsAlive();
 
     default void greeting(){
         //default метод с реализацией

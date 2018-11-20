@@ -26,11 +26,23 @@ public class User {
     }
 
     public User(String name, String pwd, String email) {
-        System.out.println("Enter NAME, PASSWORD, EMAIL");
         this.name = name;
         this.pwd = pwd;
         this.email = email;
-        RegisterUser.RegisterUser(name, pwd, email);
+        String sql = "SELECT * FROM user WHERE name = ?";
+        System.out.println(getName());
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chatdb?useSSL=false",
+                "chatuser", "cde14af78")) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, getName());
+            preparedStatement.execute();
+            System.out.println("Пользователь с таким именем уже зарегистрирован");
+            Main.main(null);
+        } catch (SQLException e) {
+            System.out.println("Registration.....");
+            RegisterUser.RegisterUser(getName(), getPwd(), getEmail());
+            System.out.println("Success.....");
+        }
     }
 
     protected void SendMessage(User reception) {
@@ -55,25 +67,22 @@ public class User {
     }
 
     protected static void AddToGroup(User user) {
-        System.out.println("Enter Group name ='?'");
-
+        System.out.print("Enter Group name: ");
         ResultSet resultSet;
         Scanner in = new Scanner(System.in);
         String groupname = in.next();
-        String sql = "SELECT id FROM User WHERE name = \"" + user.getName() + "\"";
+        String sql = "SELECT id FROM User WHERE name = ?";
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chatdb?useSSL=false",
                 "chatuser", "cde14af78")) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, user.getName());
-            resultSet = preparedStatement.executeQuery(sql);
+            preparedStatement.setString(1, user.getName());
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("id"));
-                sql = "INSERT INTO group (groupname, userid) VALUES (?, ?);";
+                sql = "INSERT INTO usergroup (groupname, userid) VALUES (?, ?)";
                 preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, groupname);
                 preparedStatement.setString(2, resultSet.getString("id"));
-                int row = preparedStatement.executeUpdate();
-                System.out.println(row);
+                preparedStatement.execute();
             }
         } catch (SQLException e) {
             e.printStackTrace();

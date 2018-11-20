@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class RegisterUser {
     protected static void RegisterUser(String name, String pwd, String email) {
 
-        String sql = "INSERT INTO User (name, password, email) VALUES (?, ? , ?);";
+        String sql = "INSERT INTO User (name, password, email) VALUES (?,?,?);";
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chatdb?useSSL=false",
                 "chatuser", "cde14af78")) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
