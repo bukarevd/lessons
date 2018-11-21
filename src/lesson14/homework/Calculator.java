@@ -13,7 +13,7 @@ public class Calculator {
     }
 
 
-    protected static void enterData() throws CheckerEx, ArithmeticException {
+    private static void enterData() throws CheckerEx, ArithmeticException {
         int x, y;
         Scanner in = new Scanner(System.in);
         String oper;
@@ -40,7 +40,6 @@ public class Calculator {
             case "/":
                 System.out.println(x / y);
             default:
-                return;
         }
     }
 
