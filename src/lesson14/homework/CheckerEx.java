@@ -1,7 +1,7 @@
 package lesson14.homework;
 
-public class CheckerEx extends Exception {
-    public CheckerEx(String msg){
+class CheckerEx extends Exception {
+    CheckerEx(String msg){
         super(msg);
     }
 }
