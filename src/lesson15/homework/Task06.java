@@ -59,13 +59,13 @@ public class Task06 {
 
     }
 
-    protected void writeToFile(File file, byte[] bytes) {
+    private void writeToFile(File file, byte[] bytes) {
         try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
             fileOutputStream.write(bytes);
         } catch (FileNotFoundException e) {
-
+                e.getStackTrace();
         } catch (IOException e) {
-
+            e.getStackTrace();
         }
 
     }
