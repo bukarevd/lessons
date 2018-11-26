@@ -1,6 +1,7 @@
 package lesson15.homework;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Task06 {
@@ -17,30 +18,39 @@ public class Task06 {
                 byteArrayOutputStream.write(bytes, 0, len);
             }
             bytes = byteArrayOutputStream.toByteArray();
-            byte[] buf;
-            if (byteArrayOutputStream.toByteArray().length % 2 == 0) {
-                for (int i = 0; i < (bytes.length / 2); i++) {
-                    buf = new byte[bytes.length / 2];
-                    buf[i] = bytes[i];
-                    new Task06().writeToFile(file2, buf);
+            byte[] buf = null;
+            System.out.println(Arrays.toString(bytes));
+            if (bytes.length % 2 == 0) {
+                buf = new byte[bytes.length / 2];
+                int j = 0;
+               for (int i = 0; i < bytes.length / 2; i++){
+                   buf[j] = bytes[i];
+                   j++;
+               }
+               new Task06().writeToFile(file2, buf);
+               j=0;
+               for (int i = bytes.length / 2; i< bytes.length; i++){
+                   buf[j] = bytes[i];
+                   j++;
+               }
+               new Task06().writeToFile(file3, buf);
+            }else{
+                int j = 0;
+                buf = new byte[bytes.length / 2];
+                for (int i = 0; i < bytes.length / 2; i++){
+                    buf[j] = bytes[i];
+                    j++;
                 }
-                for (int i = (bytes.length / 2); i < bytes.length; i++) {
-                    buf = new byte[(bytes.length / 2) + 1];
-                    buf[i] = bytes[i];
-                    new Task06().writeToFile(file3, buf);
+                new Task06().writeToFile(file2, buf);
+                buf = new byte[(bytes.length / 2) + 1];
+                j = 0;
+                for (int i = bytes.length / 2; i< bytes.length; i++){
+                    buf[j] = bytes[i];
+                    j++;
                 }
-            } else {
-                for (int i = 0; i < (bytes.length / 2); i++) {
-                    buf = new byte[bytes.length / 2];
-                    buf[i] = bytes[i];
-                    new Task06().writeToFile(file2, buf);
-                }
-                for (int i = (bytes.length / 2); i < bytes.length; i++) {
-                    buf = new byte[bytes.length / 2];
-                    buf[i] = bytes[i];
-                    new Task06().writeToFile(file3, buf);
-                }
+                new Task06().writeToFile(file3, buf);
             }
+            System.out.println(Arrays.toString(buf));
         } catch (FileNotFoundException e) {
             e.getStackTrace();
         } catch (IOException e) {
