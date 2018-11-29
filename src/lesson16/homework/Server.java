@@ -24,14 +24,13 @@ public class Server {
         }
     }
 
-    private void printObject(Object object) {
-        if(object instanceof ServerTime)
-        System.out.println(object);
+    private void printObject(Command object) {
+        object.execute();
     }
 
     private void getMessage(Socket socket) {
         try (ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
-            Object object =  in.readObject();
+            Command object =  (Command) in.readObject();
             printObject(object);
         } catch (IOException e) {
             e.printStackTrace();

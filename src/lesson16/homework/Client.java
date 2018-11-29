@@ -37,15 +37,17 @@ public class Client {
             case "/server_time":
                 sendCommand(new ServerTime());
                 break;
-            case "/list_users":break;
-            case "/ping":break;
+            case "/list_users": break;
+            case "/ping":
+                sendCommand(new Ping());
+                break;
             default: return;
 
         }
 
     }
 
-    private void sendCommand(Object object) {
+    private void sendCommand(Command object) {
         try (Socket socket = new Socket()) {
             socket.connect(serverAddress);
             try (OutputStream out = socket.getOutputStream()) {

@@ -4,28 +4,17 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ServerTime implements Externalizable {
-    Date time = new Date();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
-    String formatDate = simpleDateFormat.format(time);
+public class ServerTime extends Command implements Externalizable{
+    private Date time = new Date();
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
+    private String formatDate = simpleDateFormat.format(time);
 
     private static final long serialVersionUID = 0L;
     private static final int VERSION = 0;
 
     @Override
-    public String toString() {
-        return "ServerTime{" +
-                "formatDate='" + formatDate + '\'' +
-                '}';
-    }
-
-//    public String getFormatDate() {
-//        return formatDate;
-//    }
-
-   @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.write(VERSION);
+        out.writeInt(VERSION);
         out.writeUTF(formatDate);
     }
 
@@ -36,5 +25,10 @@ public class ServerTime implements Externalizable {
            throw new IOException("unsupported version " + version);
         }
         formatDate = in.readUTF();
+    }
+
+    @Override
+    public void execute() {
+        System.out.println(formatDate);
     }
 }
