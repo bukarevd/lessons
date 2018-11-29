@@ -1,9 +1,6 @@
 package lesson16.homework;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,19 +10,30 @@ public class ServerTime implements Externalizable {
     String formatDate = simpleDateFormat.format(time);
 
     private static final long serialVersionUID = 0L;
-    private static final int VERSION = 1;
+    private static final int VERSION = 0;
 
     @Override
+    public String toString() {
+        return "ServerTime{" +
+                "formatDate='" + formatDate + '\'' +
+                '}';
+    }
+
+//    public String getFormatDate() {
+//        return formatDate;
+//    }
+
+   @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.write(VERSION);
         out.writeUTF(formatDate);
     }
 
     @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException {
         int version = in.readInt();
         if (version > VERSION) {
-            throw new IOException("unsupported version");
+           throw new IOException("unsupported version " + version);
         }
         formatDate = in.readUTF();
     }
