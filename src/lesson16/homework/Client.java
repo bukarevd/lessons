@@ -37,11 +37,13 @@ public class Client {
             case "/server_time":
                 sendCommand(new ServerTime());
                 break;
-            case "/list_users": break;
+            case "/list_users":
+                sendCommand(new ListUsers());
+                break;
             case "/ping":
                 sendCommand(new Ping());
                 break;
-            default: return;
+            default:
 
         }
 
