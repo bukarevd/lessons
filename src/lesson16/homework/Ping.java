@@ -26,7 +26,7 @@ public class Ping extends Command implements Externalizable {
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         int version = in.readInt();
         if(version > VERSION){
-            System.out.println("unsupport version");
+            throw new IOException("unsupported version " + version);
         }
         startTime -= System.currentTimeMillis();
 
