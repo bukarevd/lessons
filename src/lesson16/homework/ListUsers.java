@@ -15,26 +15,9 @@ public class ListUsers extends Command implements Externalizable {
 
     @Override
     public void execute() {
-      //  System.out.println(user);
         readUsers(file);
-        writeUser(file);
-
-
-
     }
-    private void writeUser(File file){
-       // stringBuilder.append(System.getProperty("user.name") + "\n");
-        if (!file.exists()){
-            System.out.println("First enter");
-        }
-        try(FileOutputStream out = new FileOutputStream(file, true)) {
-            out.write(stringBuilder.toString().getBytes());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     private void readUsers(File file){
         try (FileInputStream in = new FileInputStream(file);

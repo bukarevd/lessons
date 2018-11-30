@@ -1,9 +1,7 @@
 package lesson16.homework;
 
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -12,6 +10,8 @@ import java.util.Scanner;
 public class Client {
     private SocketAddress serverAddress;
     private Scanner scanner;
+    private StringBuilder stringBuilder = new StringBuilder(System.getProperty("user.name") + "\n");
+    private File file = new File("UserList.dat");
 
     private Client(SocketAddress serverAddress, Scanner scanner){
         this.serverAddress = serverAddress;
@@ -23,7 +23,22 @@ public class Client {
         return new InetSocketAddress(adr[0], Integer.parseInt(adr[1]));
     }
 
+    private void writeUser(File file){
+        // stringBuilder.append(System.getProperty("user.name") + "\n");
+        if (!file.exists()){
+            System.out.println("First enter");
+        }
+        try(FileOutputStream out = new FileOutputStream(file, true)) {
+            out.write(stringBuilder.toString().getBytes());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void start() {
+        writeUser(file);
         while (true) {
             System.out.println("Enter command");
             String command = scanner.nextLine();
