@@ -18,7 +18,7 @@ public class Task03 {
             try {
                 Files.copy(f.toPath(), new File(dest + File.separator + f.getName()).toPath());
             } catch (IOException e) {
-                continue;
+                e.getStackTrace();
             }
         }
     }
