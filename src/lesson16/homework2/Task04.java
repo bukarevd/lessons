@@ -21,7 +21,7 @@ public class Task04 {
                 delete(actions, file);
                 break;
             case "-u":
-                update(actions, file);
+                updateProduct(actions, file);
                 break;
             default:
                 read(actions);
@@ -93,6 +93,32 @@ public class Task04 {
         }
 
         return id;
+    }
+    private static void updateProduct(String[] strings, File file){
+        int updId = Integer.parseInt(strings[1]);
+        String[] products = null;
+        try (FileInputStream in = new FileInputStream(file);
+             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                byteArrayOutputStream.write(buf, 0, len);
+            }
+            products = byteArrayOutputStream.toString().split("\n");
+            String[] newProduct = new String[products.length];
+            for (int i = 0; i < products.length; i++) {
+                String[] product = products[i].split(" ");
+                if (Integer.parseInt(product[0]) != updId) {
+                    newProduct[i] = products[i];
+
+                } else {
+                    newProduct[i] = strings[1]+ " " + strings[2]+ " " + strings[3]+ " " + strings[4];
+                }
+            }
+            update(newProduct, file);
+        } catch (IOException e) {
+            e.getStackTrace();
+        }
     }
 
 
