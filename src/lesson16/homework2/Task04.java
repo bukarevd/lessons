@@ -45,6 +45,7 @@ public class Task04 {
 
     }
 
+
     protected static int readIdFile(File file) {
         int id = 0;
         try (FileInputStream in = new FileInputStream(file);
@@ -57,7 +58,7 @@ public class Task04 {
             id = Integer.parseInt(byteArrayOutputStream.toString());
         } catch (IOException e) {
             e.getStackTrace();
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             writeIdFile(file, 1);
             readIdFile(file);
         }
@@ -96,37 +97,44 @@ public class Task04 {
 
 
     private static void update(String[] strings, File file) {
-
+        try (FileOutputStream out = new FileOutputStream(file, false)) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < strings.length; i++) {
+                sb.append(strings[i] + "\n");
+            }
+            out.write(sb.toString().getBytes(Charset.forName("UTF-8")));
+        } catch (IOException e) {
+            e.getStackTrace();
+        }
 
     }
 
     private static void delete(String[] strings, File file) {
         int delId = Integer.parseInt(strings[1]);
         String[] products = null;
-        try(FileInputStream in = new FileInputStream(file);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()){
+        int j=0;
+        try (FileInputStream in = new FileInputStream(file);
+             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
             byte[] buf = new byte[1024];
             int len;
-            while ((len = in.read(buf)) > 0){
-                byteArrayOutputStream.write(buf, 0 ,len);
+            while ((len = in.read(buf)) > 0) {
+                byteArrayOutputStream.write(buf, 0, len);
             }
             products = byteArrayOutputStream.toString().split("\n");
-            for (int i=0; i < products.length; i++){
+            String[] newProduct = new String[products.length - 1];
+            for (int i = 0; i < products.length; i++) {
                 String[] product = products[i].split(" ");
-                if(Integer.parseInt(product[0]) == delId){
-                        products[i] = null;
+                if (Integer.parseInt(product[0]) != delId) {
+                    newProduct[j] = products[i];
+                    j++;
+                } else {
+                    continue;
                 }
             }
-            System.out.println(Arrays.toString(products));
-        }catch (IOException e){
+            update(newProduct, file);
+        } catch (IOException e) {
             e.getStackTrace();
         }
-        try(FileOutputStream out = new FileOutputStream(file)){
-            out.write(Arrays.toString(products).getBytes(Charset.forName("UTF-8")));
-        }catch (IOException e){
-            e.getStackTrace();
-        }
-
     }
 
     private static void read(String[] strings) {
