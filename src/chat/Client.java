@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.util.Scanner;
 
 public class Client {
     private SocketAddress socketAddress;
@@ -34,8 +33,10 @@ public class Client {
     }
 
     private void sendMessage(Message message) {
+
         try (Socket socket = new Socket())
         {
+
             socket.connect(socketAddress);
             IOConnection connection = new IOConnection(socket);
             connection.send(message);
