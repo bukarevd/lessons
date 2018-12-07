@@ -65,6 +65,7 @@ public class Task03 {
             byte[] keyarr = key.getBytes();
             for (int i = 0; i < arr.length; i++) {
                 result[i] = (byte) (arr[i] ^ keyarr[i % keyarr.length]);
+
             }
             System.out.println(Arrays.toString(result));
         } catch (FileNotFoundException e) {

@@ -2,7 +2,6 @@ package lesson17.homework.task01;
 
 import java.io.FilterOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 
 public class CryptoOutputStream extends FilterOutputStream {
@@ -12,8 +11,7 @@ public class CryptoOutputStream extends FilterOutputStream {
     @Override
     public void write(int b) throws IOException {
         int res = b;
-        if (res >= 0) readBytes+=res;
-        res = (byte) (res ^ pass[0 % pass.length]);
+//        шифрование
         super.write(res);
     }
 
