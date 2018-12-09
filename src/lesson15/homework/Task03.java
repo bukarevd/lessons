@@ -18,69 +18,69 @@ public class Task03 {
 
     }
 
-    protected void encrypt(File file, String key) {
-        byte[] result = null;
-        try (InputStream inputStream = new FileInputStream(file);
-             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ) {
-            byte[] bytes = new byte[1024];
-            int len;
-            while ((len = inputStream.read(bytes)) > 0) {
-                byteArrayOutputStream.write(bytes, 0, len);
-            }
-            byte[] arr = byteArrayOutputStream.toByteArray();
-            byte[] str = key.getBytes();
-            result = new byte[arr.length];
-            for (int i = 0; i < arr.length; i++) {
-                result[i] = (byte) (arr[i] ^ str[i % str.length]);
-            }
-            System.out.println(Arrays.toString(result));
-        } catch (FileNotFoundException e) {
-            e.getStackTrace();
-        } catch (IOException e) {
-            e.getStackTrace();
-        }
-        try (FileOutputStream fileOutputStream = new FileOutputStream(file, false)) {
-            fileOutputStream.write(result);
-        } catch (FileNotFoundException e) {
-            e.getStackTrace();
-        } catch (IOException e) {
-            e.getStackTrace();
-        }
-    }
-
-
-    protected void decrypt(File file, String key) {
-        byte[] result = null;
-        try (InputStream inputStream = new FileInputStream(file);
-             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ) {
-            byte[] bytes = new byte[1024];
-            int len;
-            while ((len = inputStream.read(bytes)) > 0) {
-                byteArrayOutputStream.write(bytes, 0, len);
-            }
-            result = new byte[byteArrayOutputStream.toByteArray().length];
-            byte[] arr = byteArrayOutputStream.toByteArray();
-            byte[] keyarr = key.getBytes();
-            for (int i = 0; i < arr.length; i++) {
-                result[i] = (byte) (arr[i] ^ keyarr[i % keyarr.length]);
-
-            }
-            System.out.println(Arrays.toString(result));
-        } catch (FileNotFoundException e) {
-            e.getStackTrace();
-        } catch (IOException e) {
-            e.getStackTrace();
-        }
-        try (FileOutputStream fileOutputStream = new FileOutputStream(file, false)) {
-            fileOutputStream.write(result);
-        } catch (FileNotFoundException e) {
-            e.getStackTrace();
-        } catch (IOException e) {
-            e.getStackTrace();
-        }
-    }
+//    protected void encrypt(File file, String key) {
+//        byte[] result = null;
+//        try (InputStream inputStream = new FileInputStream(file);
+//             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        ) {
+//            byte[] bytes = new byte[1024];
+//            int len;
+//            while ((len = inputStream.read(bytes)) > 0) {
+//                byteArrayOutputStream.write(bytes, 0, len);
+//            }
+//            byte[] arr = byteArrayOutputStream.toByteArray();
+//            byte[] str = key.getBytes();
+//            result = new byte[arr.length];
+//            for (int i = 0; i < arr.length; i++) {
+//                result[i] = (byte) (arr[i] ^ str[i % str.length]);
+//            }
+//            System.out.println(Arrays.toString(result));
+//        } catch (FileNotFoundException e) {
+//            e.getStackTrace();
+//        } catch (IOException e) {
+//            e.getStackTrace();
+//        }
+//        try (FileOutputStream fileOutputStream = new FileOutputStream(file, false)) {
+//            fileOutputStream.write(result);
+//        } catch (FileNotFoundException e) {
+//            e.getStackTrace();
+//        } catch (IOException e) {
+//            e.getStackTrace();
+//        }
+//    }
+//
+//
+//    protected void decrypt(File file, String key) {
+//        byte[] result = null;
+//        try (InputStream inputStream = new FileInputStream(file);
+//             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        ) {
+//            byte[] bytes = new byte[1024];
+//            int len;
+//            while ((len = inputStream.read(bytes)) > 0) {
+//                byteArrayOutputStream.write(bytes, 0, len);
+//            }
+//            result = new byte[byteArrayOutputStream.toByteArray().length];
+//            byte[] arr = byteArrayOutputStream.toByteArray();
+//            byte[] keyarr = key.getBytes();
+//            for (int i = 0; i < arr.length; i++) {
+//                result[i] = (byte) (arr[i] ^ keyarr[i % keyarr.length]);
+//
+//            }
+//            System.out.println(Arrays.toString(result));
+//        } catch (FileNotFoundException e) {
+//            e.getStackTrace();
+//        } catch (IOException e) {
+//            e.getStackTrace();
+//        }
+//        try (FileOutputStream fileOutputStream = new FileOutputStream(file, false)) {
+//            fileOutputStream.write(result);
+//        } catch (FileNotFoundException e) {
+//            e.getStackTrace();
+//        } catch (IOException e) {
+//            e.getStackTrace();
+//        }
+//    }
 
     protected void encryptFile(File[] files) {
         byte[] result = null;
@@ -162,6 +162,7 @@ public class Task03 {
             byte[] keyarr = keyString.getBytes();
             for (int i = 0; i < arr.length; i++) {
                 result[i] = (byte) (arr[i] ^ keyarr[i % keyarr.length]);
+                System.out.println(result[i]);
             }
             System.out.println(Arrays.toString(result));
         }catch (FileNotFoundException e){
