@@ -20,7 +20,7 @@ public class ProcessCommand extends Command {
         return "ProcessCommand";
     }
 
-    public String getString(){
+    public String getString() {
         return this.string;
     }
 
@@ -29,9 +29,9 @@ public class ProcessCommand extends Command {
         this.string = string;
         System.out.println(string);
         File file = new File("command.txt");
-        try(OutputStream out = new FileOutputStream(file, true)){
+        try (OutputStream out = new FileOutputStream(file, true)) {
             out.write(string.getBytes());
-        }catch(IOException e){
+        } catch (IOException e) {
             e.getMessage();
         }
 //        processor.string = string;

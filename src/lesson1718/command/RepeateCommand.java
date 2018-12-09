@@ -11,17 +11,18 @@ public class RepeateCommand extends Command {
     @Override
     boolean execute(String string) {
         File file = new File("command.txt");
-        try(OutputStream out = new FileOutputStream(file, true)){
+        try (OutputStream out = new FileOutputStream(file, true)) {
             out.write(string.getBytes());
-        }catch(IOException e){
+        } catch (IOException e) {
             e.getMessage();
         }
         return true;
     }
 
-    String getString(){
+    String getString() {
         return this.string;
     }
+
     public RepeateCommand(TextProcessor processor) {
         super(processor);
     }
