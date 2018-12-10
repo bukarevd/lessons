@@ -8,9 +8,9 @@ import java.net.Socket;
 import java.net.SocketAddress;
 
 public class IOConnection {
-    Socket socket;
-    ObjectInputStream in;
-    ObjectOutputStream out;
+    private Socket socket;
+    private ObjectInputStream in;
+    private ObjectOutputStream out;
 
     public IOConnection(Socket socket) {
         this.socket = socket;
