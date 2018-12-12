@@ -28,6 +28,7 @@ public class Client {
         System.out.println("Enter message");
         while (true) {
             String msg = in.nextLine();
+
 //          реализовать возможность выхода (/exit)
 //          реализовать смену имени пользователя (/nick)
 
