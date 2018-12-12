@@ -17,7 +17,7 @@ public class Main {
     }
 
     public static void printMethod(Object testClass) throws IllegalAccessException {
-        Class cla = testClass.getClass();
+        Class<?> cla = testClass.getClass();
         System.out.println(cla.getName());
         Field[] fields = cla.getDeclaredFields();
         String name = cla.getSimpleName();
@@ -29,6 +29,7 @@ public class Main {
         for (int i = 0; i < fields.length; i++) {
             System.out.println("name= " + fields[i].getName() + " type = " + fields[i].getType() + " value = " +
                     fields[i].get(testClass));
+
         }
         System.out.println(" }");
 
