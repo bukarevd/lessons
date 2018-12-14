@@ -10,11 +10,8 @@ public class CryptoOutputStream extends FilterOutputStream {
 
     @Override
     public void write(int b) throws IOException {
-        System.out.println(" 1-- " + b );
-        //int res = b;
         int res = b ^ pass[count % pass.length];
         count++;
-        System.out.println(" 2-- " + res);
         super.write(res);
     }
 

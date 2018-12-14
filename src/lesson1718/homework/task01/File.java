@@ -9,10 +9,14 @@ import java.util.Scanner;
 
 public class File {
     Scanner in = new Scanner(System.in);
-    String pass = in.nextLine();
-    String text = in.nextLine();
+    String pass;
+    String text;
 
     protected void writeFile(){
+        System.out.print("Enter password ");
+        pass=in.nextLine();
+        System.out.print("\nEnter text ");
+        text = in.nextLine();
         try (OutputStream out = new CryptoOutputStream(new FileOutputStream("test.bin"), pass.getBytes())){
             out.write(text.getBytes());
         }catch (IOException e ){
@@ -28,8 +32,7 @@ public class File {
             while ((len = in.read(buf)) > 0) {
                 byteArrayOutputStream.write(buf, 0, len);
             }
-            System.out.println(Arrays.toString(byteArrayOutputStream.toByteArray()));
-            System.out.println(new String(byteArrayOutputStream.toByteArray(), Charset.forName("UTF-8")));
+            System.out.println("Считанный текст: " + new String(byteArrayOutputStream.toByteArray(), Charset.forName("UTF-8")));
         }catch (IOException e){
             e.getMessage();
         }
