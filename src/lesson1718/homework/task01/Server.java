@@ -1,5 +1,7 @@
 package lesson1718.homework.task01;
 
+import chat.IOConnection;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -22,7 +24,6 @@ public class Server {
             e.printStackTrace();
         }
     }
-
 
 
     public static void main(String[] args) {
