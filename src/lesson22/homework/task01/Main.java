@@ -2,18 +2,20 @@ package lesson22.homework.task01;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 
-public class main {
-
+public class Main {
 
     public static void main(String[] args) {
         Resource resource = new Resource();
         BlockingQueue<String> wordsQueue = new PriorityBlockingQueue<>();
         int processor = Runtime.getRuntime().availableProcessors();
-        String text = null;
+        String text;
         Scanner scanner = new Scanner(System.in);
         File file = new File(scanner.nextLine());
         String[] words = null;
@@ -35,27 +37,29 @@ public class main {
         }
         for (int i = 0; i < processor; i++) {
             new addQueueInThread(wordsQueue, words, resource).start();
+            new takeQueue(wordsQueue, resource).start();
         }
-        new takeQueue(wordsQueue).start();
+
 
     }
 }
 
 
 class addQueueInThread extends Thread {
-    Resource resource;
-    BlockingQueue blockingQueue;
-    String[] words;
+    private Resource resource;
+    private BlockingQueue blockingQueue;
+    private String[] words;
 
 
-    public addQueueInThread(BlockingQueue blockingQueue, String[] words, Resource resource) {
+    addQueueInThread(BlockingQueue blockingQueue, String[] words, Resource resource) {
         this.blockingQueue = blockingQueue;
         this.words = words;
         this.resource = resource;
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
+        String string = "";
         int start = resource.getStart();
         int end = resource.getEnd();
         int count = resource.getCount();
@@ -91,8 +95,11 @@ class addQueueInThread extends Thread {
             resource.setCount(count);
 
             for (int i = resource.getStart(); i < resource.getEnd() + 1; i++) {
-                blockingQueue.add(words[i]);
+                string = string + " " + words[i];
+                //System.out.println(getName() + " " +i + " " + words[i]);
             }
+            System.out.println(getName() + "String = " + string);
+            blockingQueue.add(string);
 
         }
     }
@@ -100,18 +107,33 @@ class addQueueInThread extends Thread {
 
 class takeQueue extends Thread {
     BlockingQueue blockingQueue;
+    Resource resource;
 
-    public takeQueue(BlockingQueue blockingQueue) {
+    public takeQueue(BlockingQueue blockingQueue, Resource resource) {
         this.blockingQueue = blockingQueue;
+        this.resource = resource;
     }
 
     @Override
     public void run() {
+        String string = "";
+        Map<String, Integer> mapWords = resource.getMapWords();
         try {
-            System.out.println(blockingQueue.take());
+            string = (String) blockingQueue.take();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        String[] words = string.split(" ");
+        for (String word : words) {
+
+            if (!mapWords.containsKey(word))
+                mapWords.put(word, 1);
+            else {
+
+                mapWords.put(word, mapWords.get(word) + 1);
+            }
+        }
+
     }
 }
 
@@ -119,6 +141,16 @@ class Resource {
     int start;
     int end;
     int count;
+    Map<String, Integer> mapWords = new HashMap<>();
+
+
+    public Map<String, Integer> getMapWords() {
+        return mapWords;
+    }
+
+    public void setMapWords(Map<String, Integer> mapWords) {
+        this.mapWords = mapWords;
+    }
 
     public int getStart() {
         return start;
