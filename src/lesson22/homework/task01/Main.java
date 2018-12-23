@@ -2,7 +2,6 @@ package lesson22.homework.task01;
 
 import java.io.*;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -66,7 +65,6 @@ class addQueueInThread extends Thread {
         int processor = Runtime.getRuntime().availableProcessors();
         if (words.length % processor == 0) {
             if (count == 0 && count < processor) {
-                start = 0;
                 end = words.length / processor - 1;
                 count++;
             } else {
@@ -75,7 +73,6 @@ class addQueueInThread extends Thread {
                     end = start + (words.length - start) - 1;
                 else
                     end = start + (words.length / processor) - 1;
-                count++;
             }
         } else {
             if (count == 0 && count < processor) {
@@ -106,10 +103,10 @@ class addQueueInThread extends Thread {
 }
 
 class takeQueue extends Thread {
-    BlockingQueue blockingQueue;
-    Resource resource;
+    private BlockingQueue blockingQueue;
+    private Resource resource;
 
-    public takeQueue(BlockingQueue blockingQueue, Resource resource) {
+    takeQueue(BlockingQueue blockingQueue, Resource resource) {
         this.blockingQueue = blockingQueue;
         this.resource = resource;
     }
@@ -124,33 +121,28 @@ class takeQueue extends Thread {
             e.printStackTrace();
         }
         String[] words = string.split(" ");
-        for (String word : words) {
-
+        for (String word : words)
             if (!mapWords.containsKey(word))
                 mapWords.put(word, 1);
             else {
 
                 mapWords.put(word, mapWords.get(word) + 1);
             }
-        }
-
+        System.out.println(mapWords.toString());
     }
 }
 
 class Resource {
-    int start;
-    int end;
-    int count;
-    Map<String, Integer> mapWords = new HashMap<>();
+    private int start;
+    private int end;
+    private int count;
+    private Map<String, Integer> mapWords = new HashMap<>();
 
 
-    public Map<String, Integer> getMapWords() {
+    Map<String, Integer> getMapWords() {
         return mapWords;
     }
 
-    public void setMapWords(Map<String, Integer> mapWords) {
-        this.mapWords = mapWords;
-    }
 
     public int getStart() {
         return start;
@@ -160,11 +152,11 @@ class Resource {
         this.start = start;
     }
 
-    public int getEnd() {
+    int getEnd() {
         return end;
     }
 
-    public void setEnd(int end) {
+    void setEnd(int end) {
         this.end = end;
     }
 
