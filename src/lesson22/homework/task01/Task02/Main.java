@@ -35,7 +35,8 @@ class Client extends Thread {
     public void run() {
         order.setClient(true);
         try {
-            clientQueue.put(new Order());
+            order.setClient(true);
+            clientQueue.put(order);
             System.out.println("Заказ создан");
             order = cookQueue.take();
         } catch (InterruptedException e) {
@@ -62,6 +63,7 @@ class Waiter extends Thread {
     public void run() {
         try {
             orderWaiter = clientQueue.take();
+            if(orderWaiter.isClient())
             System.out.println("Заказ получен официантом от клиента");
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -96,6 +98,7 @@ class Cook extends Thread {
             e.printStackTrace();
         }
         if (cookOrder.isCook())
+            if (cookOrder.isWaiter())
             System.out.println("Заказ получен поваром от официанта");
         cookOrder.setCook(true);
         try {
