@@ -2,7 +2,6 @@ package lesson22.homework.task01.Task02;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.PriorityBlockingQueue;
 
 public class Main {
 
@@ -22,11 +21,11 @@ public class Main {
 }
 
 class Client extends Thread {
-    Order order;
-    BlockingQueue<Order> clientQueue;
-    BlockingQueue<Order> cookQueue;
+    private Order order;
+    private BlockingQueue<Order> clientQueue;
+    private BlockingQueue<Order> cookQueue;
 
-    public Client(BlockingQueue<Order> clientQueue, BlockingQueue<Order> cookQueue, Order order) {
+    Client(BlockingQueue<Order> clientQueue, BlockingQueue<Order> cookQueue, Order order) {
         this.clientQueue = clientQueue;
         this.cookQueue = cookQueue;
         this.order = order;
@@ -48,13 +47,13 @@ class Client extends Thread {
 }
 
 class Waiter extends Thread {
-    Order orderWaiter;
+    private Order orderWaiter;
 
 
-    BlockingQueue<Order> clientQueue;
-    BlockingQueue<Order> waiterQueue;
+    private BlockingQueue<Order> clientQueue;
+    private BlockingQueue<Order> waiterQueue;
 
-    public Waiter(BlockingQueue<Order> clientQueue, BlockingQueue<Order> waiterQueue) {
+    Waiter(BlockingQueue<Order> clientQueue, BlockingQueue<Order> waiterQueue) {
         this.clientQueue = clientQueue;
         this.waiterQueue = waiterQueue;
     }
@@ -80,12 +79,12 @@ class Waiter extends Thread {
 }
 
 class Cook extends Thread{
-    Order cookOrder;
+    private Order cookOrder;
 
-    BlockingQueue<Order> waiterQueue;
-    BlockingQueue<Order> cookQueue;
+    private BlockingQueue<Order> waiterQueue;
+    private BlockingQueue<Order> cookQueue;
 
-    public Cook(BlockingQueue<Order> waiterQueue, BlockingQueue<Order> cookQueue) {
+    Cook(BlockingQueue<Order> waiterQueue, BlockingQueue<Order> cookQueue) {
         this.waiterQueue = waiterQueue;
         this.cookQueue = cookQueue;
     }
