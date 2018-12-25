@@ -62,8 +62,7 @@ class Waiter extends Thread {
     public void run() {
         try {
             orderWaiter = clientQueue.take();
-            if (orderWaiter.isClient())
-                System.out.println("Заказ получен официантом от клиента");
+            System.out.println("Заказ получен официантом от клиента");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -78,7 +77,7 @@ class Waiter extends Thread {
 
 }
 
-class Cook extends Thread{
+class Cook extends Thread {
     private Order cookOrder;
 
     private BlockingQueue<Order> waiterQueue;
