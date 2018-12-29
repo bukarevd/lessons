@@ -11,9 +11,12 @@ public class Main {
         BlockingQueue<Ship> berth3 = new ArrayBlockingQueue<>(1, true);
         BlockingQueue<Ship> berth4 = new ArrayBlockingQueue<>(1, true);
         Ship ship = new Ship(true, false);
+        Ship ship2 = new Ship(true, true);
         Ships ships = new Ships(ship, berth1);
-
+        Ships ships2 = new Ships(ship2, berth1);
         ships.start();
+        ships2.start();
+
 
     }
 }
