@@ -14,6 +14,14 @@ public class ConnectionDB {
             Statement statement = connection.createStatement();
             int row = statement.executeUpdate(UserDB);
             System.out.println(row);
+            connection.close();
+        }
+        String ArticleDB = "CREATE TABLE IF NOT EXISTS Article (id INTEGER PRIMARY KEY NOT NULL, iduser INTEGER NOT NULL, title TEXT NOT NULL);";
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:DAO.db")) {
+            Statement statement = connection.createStatement();
+            int row = statement.executeUpdate(ArticleDB);
+            System.out.println(row);
+            connection.close();
         }
     }
 }

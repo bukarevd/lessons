@@ -22,5 +22,11 @@ public class Main {
         user.delete(user1);
        // user.update(user2);
         user.getById(user2);
+        Article article1 = new Article();
+        article1.setId(1);
+        article1.setIdUser(1);
+        article1.setTitle("Article1");
+        ArticleDao articleDao = new ArticleDao();
+        articleDao.add(article1);
     }
 }
